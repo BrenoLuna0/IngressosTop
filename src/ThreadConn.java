@@ -19,6 +19,12 @@ public class ThreadConn extends Thread {
 
 			dos.flush();
 			dos.writeUTF("Bem vindo ao sistema mais top de ingressos que vc respeita " + hostAdress);
+			
+			while(true) {
+				
+			}
+		
+		
 
 		} catch (Exception e) {
 			e.printStackTrace();

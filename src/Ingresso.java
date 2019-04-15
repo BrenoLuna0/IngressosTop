@@ -31,9 +31,9 @@ public class Ingresso {
 	
 	public void ingressoPronto() {
 		System.out.println("~~~~INGRESSO~~~~");
-		System.out.println("Codigo: " + this.codigo);
-		System.out.println("Hor�rio: " + this.sessao.getHora());
-		System.out.println("Numero da cadeira: " + this.numCadeira);
+		System.out.println("Código: " + this.codigo);
+		System.out.println("Horário: " + this.sessao.getHora());
+		System.out.println("Número da cadeira: " + this.numCadeira);
 	}
 
 }

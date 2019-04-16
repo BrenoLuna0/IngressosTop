@@ -1,33 +1,39 @@
 package servidor;
 
-import util.Conexao;
+import util.ConexaoMulticast;
 
 import java.net.*;
 
-public class ServerMulticast {
+public class ServerMulticast extends Thread{
 
-    public static void main(String[] args) {
+    private ConexaoMulticast conexaoMulticast;
 
-        int porta = 1234;
-        String ipGrupo = "230.231.232.233";
-        Conexao conexao = new Conexao();
+    private void responderRequisicoes() {
+        conexaoMulticast = new ConexaoMulticast();
 
         /*Entrar no grupo*/
-        conexao.entrarNoGrupoMulticast(porta, ipGrupo);
+        conexaoMulticast.entrarNoGrupoMulticast();
 
         /*Aguardar requests*/
-        System.out.println("Esperando conexões...");
-        while (true){
-            DatagramPacket recebido = conexao.receberResposta();
+        System.out.println("Esperando conexões multicast...");
+        while (conexaoMulticast != null){
+            DatagramPacket recebido = conexaoMulticast.receberResposta();
 
             /*Cria uma thread para tratar cada conexão*/
-            ThreadConn conn = new ThreadConn(conexao, recebido);
+            ThreadConn conn = new ThreadConn(conexaoMulticast, recebido);
             conn.start();
         }
+    }
 
+    public void matarServerMulticast(){
         /*Sair do grupo e fechar socket*/
-       /* conexao.abandonarGrupo();
-        conexao.fecharConexao();*/
+        conexaoMulticast.abandonarGrupo();
+        conexaoMulticast.fecharConexao();
+        conexaoMulticast = null;
+    }
 
+    @Override
+    public void run() {
+        responderRequisicoes();
     }
 }

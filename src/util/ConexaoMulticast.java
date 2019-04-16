@@ -1,33 +1,26 @@
 package util;
 
 import java.io.IOException;
-import java.net.DatagramPacket;
-import java.net.InetAddress;
-import java.net.MulticastSocket;
-import java.net.UnknownHostException;
+import java.net.*;
 
-public class Conexao {
+public class ConexaoMulticast {
 
-    private int porta;
+    private int porta = 1234;
     private InetAddress ipGrupo = null;
     private MulticastSocket multicastSocket = null;
 
-    public Conexao() {}
+    public ConexaoMulticast() {}
 
     /**
      * Entra no grupo multicast com o ipGrupo e porta informados
-     * @param porta porta de conexão do grupo
-     * @param ipGrupo ip do grupo multicast
      */
-    public void entrarNoGrupoMulticast(int porta, String ipGrupo) {
+    public void entrarNoGrupoMulticast() {
         MulticastSocket multicastSocket = null;
 
         //noinspection TryWithIdenticalCatches
         try {
-            this.porta = porta;
+            this.setIpGrupo();
             multicastSocket = new MulticastSocket(this.porta);
-
-            this.ipGrupo = InetAddress.getByName(ipGrupo);
             multicastSocket.joinGroup(this.ipGrupo);
         } catch (UnknownHostException e) {
             e.printStackTrace();
@@ -79,7 +72,25 @@ public class Conexao {
         }catch (IOException e) {
             e.printStackTrace();
         }
+        return recebido;
+    }
 
+    /**
+     * Aguarda para receber uma resposta do grupo
+     *
+     * @return DatagramPacket com a resposta recebida
+     */
+    public DatagramPacket clienteReceberResposta(){
+        byte[] buffer = new byte[1024];
+        DatagramPacket recebido = new DatagramPacket(buffer, buffer.length);
+        try {
+            multicastSocket.setSoTimeout(3000);
+            multicastSocket.receive(recebido);
+        }catch (SocketTimeoutException d){
+            return null;
+        }catch (IOException e) {
+            e.printStackTrace();
+        }
         return recebido;
     }
 
@@ -101,5 +112,25 @@ public class Conexao {
         if (multicastSocket != null){
             multicastSocket.close();
         }
+    }
+
+    public int getPorta() {
+        return porta;
+    }
+
+    public InetAddress getIpGrupo() {
+        return ipGrupo;
+    }
+
+    private void setIpGrupo() {
+        try {
+            this.ipGrupo = InetAddress.getByName("230.231.232.233");
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public MulticastSocket getMulticastSocket() {
+        return multicastSocket;
     }
 }

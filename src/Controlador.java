@@ -65,18 +65,5 @@ public class Controlador {
 		
 		
 	}
-	
-	public Sessao escolherSessao (String filme) {
-		int save = 0;
-		for(int i = 0; i < this.sessoes.size(); i++) {
-			if(this.sessoes.get(i).getFilme() == "filme") {
-				save = i;
-				break;
-			}
-		}
-		
-		
-		return this.sessoes.get(save);
-	}
 
 }

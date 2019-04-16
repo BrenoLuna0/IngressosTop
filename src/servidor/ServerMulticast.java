@@ -16,7 +16,7 @@ public class ServerMulticast {
         conexao.entrarNoGrupoMulticast(porta, ipGrupo);
 
         /*Aguardar requests*/
-        System.out.println("Esperando conexoes...");
+        System.out.println("Esperando conexões...");
         while (true){
             DatagramPacket recebido = conexao.receberResposta();
 

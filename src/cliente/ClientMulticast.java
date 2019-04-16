@@ -15,7 +15,7 @@ public class ClientMulticast {
         /*Entrar no grupo*/
         conexao.entrarNoGrupoMulticast(porta, ipGrupo);
 
-        conexao.enviarParaGrupo("SERVIDOR?");
+        conexao.enviarParaGrupo("SERVIDOR?"); //Mensagem que o servidor vai ler e responder
 
         //Receber resposta
         while (true){

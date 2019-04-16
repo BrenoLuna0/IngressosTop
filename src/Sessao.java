@@ -1,13 +1,18 @@
 import java.util.ArrayList;
 
 public class Sessao {
-	private int hora;
+	private String filme;
+	private int sala;
+	private String hora;
 	private int quantidadeCadeiras;
-	private Cadeira[] cadeiras;
+	private ArrayList<Cadeira> cadeiras;
+	private double valorIngresso;
 	
 	
 	
-	public Sessao(int hora, int quantidadeCadeiras) {
+	public Sessao(String hora, int quantidadeCadeiras, String filme, int sala) {
+		this.filme = filme;
+		this.sala = sala;
 		this.hora = hora;
 		this.quantidadeCadeiras = quantidadeCadeiras;
 		cadeiras = cadeiraGenerator(quantidadeCadeiras);
@@ -16,13 +21,13 @@ public class Sessao {
 	
 	
 	
-	public int getHora() {
+	public String getHora() {
 		return hora;
 	}
 
 
 
-	public void setHora(int hora) {
+	public void setHora(String hora) {
 		this.hora = hora;
 	}
 
@@ -40,22 +45,66 @@ public class Sessao {
 
 
 
-	public Cadeira[] getCadeiras() {
+	public ArrayList<Cadeira> getCadeiras() {
 		return cadeiras;
 	}
 
 
 
-	public void setCadeiras(Cadeira[] cadeiras) {
+	public void setCadeiras(ArrayList<Cadeira> cadeiras) {
 		this.cadeiras = cadeiras;
+	}
+	
+	
+
+
+
+	public String getFilme() {
+		return filme;
 	}
 
 
 
-	public Cadeira[] cadeiraGenerator(int quantidade) {
-		Cadeira cadeiras[] = new Cadeira[quantidade];
+
+	public void setFilme(String filme) {
+		this.filme = filme;
+	}
+
+
+
+
+	public int getSala() {
+		return sala;
+	}
+
+
+
+
+	public void setSala(int sala) {
+		this.sala = sala;
+	}
+
+
+
+
+	public double getValorIngresso() {
+		return valorIngresso;
+	}
+
+
+
+
+	public void setValorIngresso(double valorIngresso) {
+		this.valorIngresso = valorIngresso;
+	}
+
+
+
+
+	public ArrayList<Cadeira> cadeiraGenerator(int quantidade) {
+		ArrayList<Cadeira> cadeiras = new ArrayList<Cadeira>();
 		for(int i = 0; i < quantidade; i++) {
-			cadeiras[i].setDesocupada(true);
+			cadeiras.add(new Cadeira());
 		}
 		return cadeiras;
 	}
@@ -63,7 +112,7 @@ public class Sessao {
 	public ArrayList<Integer> cadeirasVagas(){
 		ArrayList<Integer> cadeirasVagas = new ArrayList<Integer>();
 		for(int i = 0; i < this.quantidadeCadeiras; i++) {
-			if(this.cadeiras[i].isDesocupada()) {
+			if(this.cadeiras.get(i).isDesocupada()) {
 				cadeirasVagas.add(i);
 			}
 		}

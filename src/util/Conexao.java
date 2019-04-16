@@ -57,7 +57,7 @@ public class Conexao {
      * Envia uma mensagem para o grupo
      * @param datagramPacket datagramPacket a ser enviado.
      */
-    public void enviarParaGrupo(DatagramPacket datagramPacket) {
+    public void responder(DatagramPacket datagramPacket) {
 
         try {
             this.multicastSocket.send(datagramPacket);

@@ -19,7 +19,7 @@ public class ThreadConn extends Thread {
 
 				String resposta = "Bem vindo ao sistema mais top de ingressos que vc respeita";
 
-				DatagramPacket resp = new DatagramPacket(resposta.getBytes(), resposta.length(), dtgpct.getAddress(), dtgpct.getPort());
+				DatagramPacket resp = new DatagramPacket(resposta.getBytes(), resposta.length(), conexao.getIpGrupo(), conexao.getPorta());
 				conexao.responder(resp);
 			}
 		} catch (Exception e) {

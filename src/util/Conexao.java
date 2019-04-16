@@ -102,4 +102,12 @@ public class Conexao {
             multicastSocket.close();
         }
     }
+    
+    public int getPorta() {
+        return porta;
+    }
+
+    public InetAddress getIpGrupo() {
+        return ipGrupo;
+    }
 }

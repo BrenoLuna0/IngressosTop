@@ -2,7 +2,7 @@ package servidor;
 
 public class Servidor {
 
-    private static final String ipUnicast = "192.168.0.178"; //TODO Definir quando mudar de rede/maquina
+    private static final String ipUnicast = "192.168.0.101"; //TODO Definir quando mudar de rede/maquina
     private static final String ipMulticast = "230.231.232.233";
     private static final int portaUnicast = 5555;
     private static final int portaMulticast = 1234;

@@ -7,6 +7,7 @@ import java.net.*;
 public class ServerMulticast extends Thread{
 
     private ConexaoMulticast conexaoMulticast;
+    private ServidorUnicast serv;
 
     private void responderRequisicoes() {
         conexaoMulticast = new ConexaoMulticast();
@@ -22,6 +23,8 @@ public class ServerMulticast extends Thread{
             /*Cria uma thread para tratar cada conexão*/
             ThreadConn conn = new ThreadConn(conexaoMulticast, recebido);
             conn.start();
+            serv = new ServidorUnicast(Servidor.getPortaUnicast());
+            serv.start();
         }
     }
 

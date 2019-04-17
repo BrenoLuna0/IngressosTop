@@ -1,3 +1,4 @@
+package regrasDeNegocio;
 
 public class Ingresso {
 	private static int id;
@@ -29,11 +30,15 @@ public class Ingresso {
 		this.numCadeira = numCadeira;
 	}
 	
-	public void ingressoPronto() {
-		System.out.println("~~~~INGRESSO~~~~");
-		System.out.println("Codigo: " + this.codigo);
-		System.out.println("Horario: " + this.sessao.getHora());
-		System.out.println("Numero da cadeira: " + this.numCadeira);
+	public String ingressoPronto() {
+		String msg = "";
+		msg = msg.concat("~~~~INGRESSO~~~~\n");
+		msg = msg.concat("Codigo: " + this.codigo + "\n");
+		msg = msg.concat("Horario: " + this.sessao.getHora() + "\n");
+		msg = msg.concat("Numero da cadeira: " + this.numCadeira + "\n");
+		
+		return msg;
+
 	}
 
 }

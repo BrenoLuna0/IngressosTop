@@ -1,3 +1,4 @@
+package regrasDeNegocio;
 import java.util.ArrayList;
 
 public class Controlador {
@@ -34,18 +35,24 @@ public class Controlador {
 				break;
 			}
 		}
-		msg = msg.concat("Cadeiras disponíveis \n");
-		int j = 0;
-		for(int i = 0; i < this.sessoes.get(save).cadeirasVagas().size(); i++) {
-			j++;
-			msg = msg.concat(this.sessoes.get(save).cadeirasVagas().get(i).toString() + " ");
-			if(j == 10) {
-				msg = msg.concat("\n");
-				j = 0;
+		if(save == 0 ) {
+			return "Nome do filme errado. Escreva novamente";
+		}else {
+			
+			msg = msg.concat("Cadeiras disponíveis \n");
+			int j = 0;
+			for(int i = 0; i < this.sessoes.get(save).cadeirasVagas().size(); i++) {
+				j++;
+				msg = msg.concat(this.sessoes.get(save).cadeirasVagas().get(i).toString() + " ");
+				if(j == 10) {
+					msg = msg.concat("\n");
+					j = 0;
+				}
 			}
+			
+			return msg;
 		}
 		
-		return msg;
 		
 	}
 	
@@ -63,6 +70,39 @@ public class Controlador {
 		}
 		
 		
+		
+	}
+	
+	public Sessao pegarSessao(String filme) {
+		
+		String msg = "";
+		int save = 0;
+		for(int i = 0; i < this.sessoes.size(); i++) {
+			if(this.sessoes.get(i).getFilme() == filme) {
+				save  = i;
+				break;
+			}
+		}
+		return this.sessoes.get(save);
+	}
+	
+	public String tratamento (String completa) {
+		Ingresso i;
+		Sessao s;
+		String filme;
+		String[] t = completa.split(",", 3);
+		
+		if(Integer.parseInt(t[1]) == 1) {
+			filme = "Vingadores Ultimato";
+		}else {
+			filme = "Jogador Numero 1";
+		}
+		
+		s = pegarSessao(filme);
+		
+		i = comprar(Integer.parseInt(t[2]), s);
+		
+		return i.ingressoPronto();
 		
 	}
 

@@ -1,3 +1,4 @@
+package regrasDeNegocio;
 
 public class Cadeira {
 	private boolean desocupada;

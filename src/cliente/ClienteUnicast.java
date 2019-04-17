@@ -27,8 +27,10 @@ public class ClienteUnicast {
 				OutputStream os = s.getOutputStream();
 				DataOutputStream dos = new DataOutputStream(os);
 				
+				String msg = entrada.nextLine();
 				dos.flush();
-				dos.writeUTF("Vai pegar");
+				dos.writeUTF(msg);
+				
 				
 				InputStream is = s.getInputStream();
 				DataInputStream dis = new DataInputStream(is);

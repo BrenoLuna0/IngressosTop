@@ -3,7 +3,7 @@ package servidor;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-public class ServidorUnicast {
+public class ServidorUnicast extends Thread {
 	
 	private ServerSocket servidor;
 	private int port;
@@ -12,7 +12,7 @@ public class ServidorUnicast {
 		this.port = port;
 	}
 	
-	public void start() {
+	public void run() {
 		
 		try {
 			
